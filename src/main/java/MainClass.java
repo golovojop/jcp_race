@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainClass {
-    public static final int CARS_COUNT = 4;
 
     public static void main(String[] args) {
         System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Подготовка!!!");
@@ -12,8 +11,8 @@ public class MainClass {
 
         // Дать старт
         List<Thread> li = new ArrayList<>();
-        for(int i = 0; i < CARS_COUNT; i++) {
-            Thread t = new Thread(new Car(race, 20 + (int) (Math.random() * 10)));
+        for(int i = 1; i <= Referee.CARS_COUNT; i++) {
+            Thread t = new Thread(new Car(race, 20 + ((int) (Math.random() * 10)), i));
             li.add(t);
             t.start();
         }
@@ -26,5 +25,6 @@ public class MainClass {
             } catch (InterruptedException e) {e.printStackTrace();}
         }
         System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка закончилась!!!");
+        System.out.println("\n*** Победил: " + Referee.winner.get() + " ***");
     }
 }
