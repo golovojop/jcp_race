@@ -18,21 +18,14 @@ public class MainClass {
         }
 
         try {
+            // Ждем когда все подготовятся
             Referee.startGate.await();
             System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка началась!!!");
             for(Thread t : li) {
                 t.join();
             }
-
         } catch (InterruptedException e) {e.printStackTrace();}
 
-        // Ждем завершения
-//        System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка началась!!!");
-//        for(Thread t : li) {
-//            try {
-//                t.join();
-//            } catch (InterruptedException e) {e.printStackTrace();}
-//        }
         System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка закончилась!!!");
         System.out.println("\n*** Победил: " + Referee.winner.get() + " ***");
     }
