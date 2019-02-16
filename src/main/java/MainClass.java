@@ -17,13 +17,22 @@ public class MainClass {
             t.start();
         }
 
-        // Ждем завершения
-        System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка началась!!!");
-        for(Thread t : li) {
-            try {
+        try {
+            Referee.startGate.await();
+            System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка началась!!!");
+            for(Thread t : li) {
                 t.join();
-            } catch (InterruptedException e) {e.printStackTrace();}
-        }
+            }
+
+        } catch (InterruptedException e) {e.printStackTrace();}
+
+        // Ждем завершения
+//        System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка началась!!!");
+//        for(Thread t : li) {
+//            try {
+//                t.join();
+//            } catch (InterruptedException e) {e.printStackTrace();}
+//        }
         System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка закончилась!!!");
         System.out.println("\n*** Победил: " + Referee.winner.get() + " ***");
     }
