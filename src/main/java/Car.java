@@ -34,7 +34,9 @@ public class Car implements Runnable {
             race.getStages().get(i).go(this);
         }
 
-        // Записать победителя в протокол соревнований
-        Referee.winner.compareAndSet(null, name);
+        // Сообщить о победе и записать победителя в протокол соревнований
+        if(Referee.winner.compareAndSet(null, name)) {
+            System.out.println(this.name + " WIN");
+        }
     }
 }
